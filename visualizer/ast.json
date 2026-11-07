@@ -1,0 +1,120 @@
+{
+  "name": "Program",
+  "children": [
+    {
+      "name": "Block",
+      "children": [
+        {
+          "name": "VarDecl (a)",
+          "children": [
+            {
+              "name": "Num: 5",
+              "children": [
+              ]
+            }
+          ]
+        },
+        {
+          "name": "VarDecl (b)",
+          "children": [
+            {
+              "name": "Num: 10",
+              "children": [
+              ]
+            }
+          ]
+        },
+        {
+          "name": "VarDecl (c)",
+          "children": [
+            {
+              "name": "Op (+)",
+              "children": [
+                {
+                  "name": "ID: a",
+                  "children": [
+                  ]
+                },
+                {
+                  "name": "Op (*)",
+                  "children": [
+                    {
+                      "name": "ID: b",
+                      "children": [
+                      ]
+                    },
+                    {
+                      "name": "Num: 2",
+                      "children": [
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "If",
+          "children": [
+            {
+              "name": "Op (>)",
+              "children": [
+                {
+                  "name": "ID: c",
+                  "children": [
+                  ]
+                },
+                {
+                  "name": "Num: 15",
+                  "children": [
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Block",
+              "children": [
+                {
+                  "name": "Assign (=)",
+                  "children": [
+                    {
+                      "name": "ID: a",
+                      "children": [
+                      ]
+                    },
+                    {
+                      "name": "Num: 0",
+                      "children": [
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Block",
+              "children": [
+                {
+                  "name": "Assign (=)",
+                  "children": [
+                    {
+                      "name": "ID: a",
+                      "children": [
+                      ]
+                    },
+                    {
+                      "name": "Num: 1",
+                      "children": [
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

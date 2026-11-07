@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>AST Візуалізатор (D3.js)</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: monospace; background: #1e1e2e; color: #cdd6f4; margin: 0; overflow: hidden; }
+        .node circle { fill: #89b4fa; stroke: #b4befe; stroke-width: 2px; }
+        .node text { fill: #cdd6f4; font-size: 13px; }
+        .link { fill: none; stroke: #45475a; stroke-width: 2px; }
+    </style>
+</head>
+<body>
+<svg width="100vw" height="100vh"></svg>
+<script>
+    fetch('ast.json')
+        .then(res => res.json())
+        .then(data => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const svg = d3.select("svg");
+            const g = svg.append("g").attr("transform", "translate(50, 50)");
+
+            const tree = d3.tree().nodeSize([40, 180]);
+            const root = d3.hierarchy(data);
+            tree(root);
+
+            g.selectAll(".link")
+                .data(root.links())
+                .enter().append("path")
+                .attr("class", "link")
+                .attr("d", d3.linkHorizontal().x(d => d.y).y(d => d.x));
+
+
+            const node = g.selectAll(".node")
+                .data(root.descendants())
+                .enter().append("g")
+                .attr("class", "node")
+                .attr("transform", d => `translate(${d.y},${d.x})`);
+
+            node.append("circle").attr("r", 6);
+            node.append("text")
+                .attr("dy", 4)
+                .attr("x", d => d.children ? -10 : 10)
+                .style("text-anchor", d => d.children ? "end" : "start")
+                .text(d => d.data.name);
+
+            svg.call(d3.zoom().on("zoom", (e) => g.attr("transform", e.transform)));
+        });
+</script>
+</body>
+</html>
